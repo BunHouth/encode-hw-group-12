@@ -47,10 +47,27 @@
           <div>
             <form>
               <div class="d-flex">
-                <input class="form-control" placeholder="Wallet address" name="address" #walletAddress>
-                <button class="btn btn-primary" type="button" (click)="onClickDelegate(walletAddress.value)">Delegate</button>
+                <input class="form-control" placeholder="Wallet address" name="address" #address>
+                <button class="btn btn-primary" type="button" (click)="onClickDelegate(address.value)">Delegate</button>
               </div>
             </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="text-center p-5 bg-secondary">
+          <p class="fs-5 text-white">Mint Token</p>
+          <div>
+            <div *ngIf="!isConnect">
+              <button class="btn btn-info" (click)="onClickConnect()">Connect Wallet</button>
+            </div>
+            <div *ngIf="isConnect">
+              <div class="text-white">Wallet Address {{walletAddress}}</div>
+              <button class="btn btn-success" (click)="onClickMint()">Mint</button>
+            </div>
           </div>
         </div>
       </div>

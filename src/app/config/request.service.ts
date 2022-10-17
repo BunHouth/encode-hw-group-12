@@ -19,7 +19,7 @@ export class RequestService {
   }
 
   mint() {
-    //TO-DO HERE
+    
   }
 
   getRecentVotes() {

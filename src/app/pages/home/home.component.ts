@@ -10,7 +10,9 @@ import { RequestService } from '../../config/request.service';
 export class HomeComponent implements OnInit {
   totalSupply: string | number | any = 0;
   voteResult: any;
-  walletAddress: any;
+  isConnect: boolean = false;
+  walletAddress: any = '';
+  web3Provider:any = null;
 
   constructor(private requestService: RequestService) {}
 
@@ -47,5 +49,38 @@ export class HomeComponent implements OnInit {
     }).subscribe(data => {
       console.log(data);
     })
+  }
+
+  async onClickConnect() {
+    let ethereum = (window as any)?.ethereum;
+    if (typeof ethereum === 'undefined') {
+      alert('Please install metamask before continue');
+      return;
+    }
+    if (ethereum) {
+      this.web3Provider = ethereum;
+      try {
+        // Request account access
+        ethereum.request({ method: 'eth_requestAccounts' }).then( (address:any) => {
+          console.log("Account connected: ", address[0]); // Account address that you had imported
+          this.isConnect = true
+          this.walletAddress = address[0];
+        }).catch((err: any) => {
+          console.log(err);
+          this.isConnect = false;
+          this.walletAddress = '';
+        })
+      } catch (error) {
+        // User denied account access...
+        console.error("User denied account access");
+      }
+    }
+  }
+
+  async onClickMint() {
+    if(!this.isConnect) {
+      return this.onClickConnect();
+    };
+    // Handle C
   }
 }

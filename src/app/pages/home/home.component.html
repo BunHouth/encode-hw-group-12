@@ -1,0 +1,59 @@
+<shared-navbar></shared-navbar>
+<div class="container">
+  <div class="text-center fs-3">Voting Weekend Project</div>
+  <div class="text-center fs-5 mt-4">Please choose each action below</div>
+  <div class="p-3 mt-5">
+    <div class="row">
+      <div class="col">
+        <div class="text-center p-5 bg-secondary">
+          <p class="fs-5 text-white">Contract Infomation</p>
+          <div class="text-center text-white fs-4">
+            Total Supply {{totalSupply}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col">
+        <div class="text-center p-5 bg-secondary">
+          <p class="fs-5 text-white">Vote Proposal</p>
+          <p class="text-center text-white">Please choose your lucky proposal</p>
+          <div>
+            <button type="button" (click)="onClickVote(0)" class="btn btn-primary">Proposal 0</button>
+            <button type="button" (click)="onClickVote(1)" class="btn btn-primary mx-1">Proposal 1</button>
+            <button type="button" (click)="onClickVote(2)" class="btn btn-primary">Proposal 2</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row my-3">
+      <div class="col">
+        <div class="text-center p-5 bg-secondary">
+          <p class="fs-5 text-white">Vote Result</p>
+          <div>
+            <button type="button" (click)="onClickShowResult()" class="btn btn-primary">Show Result</button>
+            <div *ngIf="voteResult" class="text-white">Vote Result: {{voteResult}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="text-center p-5 bg-secondary">
+          <p class="fs-5 text-white">Delegate Address</p>
+          <div>
+            <form>
+              <div class="d-flex">
+                <input class="form-control" placeholder="Wallet address" name="address" #walletAddress>
+                <button class="btn btn-primary" type="button" (click)="onClickDelegate(walletAddress.value)">Delegate</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
